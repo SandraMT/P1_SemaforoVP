@@ -1,3 +1,4 @@
+
 #define led_verde 13
 #define led_amarillo 12
 #define led_rojo 11
@@ -6,6 +7,10 @@
 #define rojo1 9
 #define verde2 8 
 #define rojo2 7
+
+#define pote 1
+
+int valor_pote = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -21,7 +26,9 @@ void setup() {
 }
 
 void loop() { 
+valor_pote = analogRead(pote);
 
+Serial.println(valor_pote);
    
   verde();
   preventivaVerde();
@@ -36,7 +43,7 @@ void verde (){
   
   //verde
   digitalWrite(led_verde,HIGH);   //alto
-  delay(31500); //31500 original 
+  delay(valor_pote*17.05); //31500 original valor_pote
 
 }
 
@@ -46,7 +53,7 @@ void preventivaVerde (){
   
     //verde
   digitalWrite(led_verde,HIGH);   //alto
-  delay(31500); //31500 original
+  delay(valor_pote*17.05); //31500 original valor_pote
 
   digitalWrite(led_verde, LOW);
     //parpadeo
@@ -100,7 +107,7 @@ for(int i = 0; i<3; i++){
   digitalWrite(rojo1,HIGH); //peaton tiempo espera -> vehiculo y peaton en rojo
   digitalWrite(rojo2,HIGH);// peaton
 
-    delay(3000);  // ambos en rojo po seguridad  
+  delay(3000);  // ambos en rojo po seguridad  
   digitalWrite(led_rojo,LOW); //bajo
 
     
